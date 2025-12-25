@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot Hỗ Trợ CNTT</title>
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <h2>CNTT Bot</h2>
+      <p class="sidebar-subtitle">— Trợ lý học tập CNTT —</p>
+    </div>
+
+    <nav class="sidebar-menu">
+      <div class="menu-item">📚 Kiến thức cơ bản</div>
+      <div class="menu-item">💻 Lập trình</div>
+      <div class="menu-item">🎓 Tư vấn CNTT</div>
+      <div class="menu-item">🛣️ Lộ trình học</div>
+      <div class="menu-item">❓ Câu hỏi phổ biến</div>
+      <div class="menu-item">🧪 Thực hành</div>
+      <div class="menu-item">📎 Tài nguyên</div>
+    </nav>
+
+    <!-- SEARCH -->
+    <div class="sidebar-search">
+      <input
+        id="history-search"
+        type="text"
+        placeholder="Tìm kiếm cuộc hội thoại"
+        oninput="searchConversations(this.value)"
+      />
+      <button class="add-chat-btn" onclick="newConversation()">+</button>
+    </div>
+
+    <div class="sidebar-history">
+      <div id="conversations-list"></div>
+    </div>
+
+  </aside>
+
+  <!-- CHAT AREA -->
+  <main class="chat-area">
+
+    <header class="chat-header">
+      <div class="chat-header-left">
+        <h3>Chatbot hỗ trợ CNTT</h3>
+      </div>
+    
+      <div class="chat-header-right">
+        <span class="status" id="user-status">● Online</span>
+    
+        <!-- Logout button -->
+        <button id="logout-btn" class="logout-btn hidden" onclick="logout()">
+          <span class="logout-icon">⎋</span>
+          <span class="logout-text">Đăng xuất</span>
+        </button>
+      </div>
+    </header>
+    
+    
+
+    <!-- LOGIN HINT -->
+    <div id="login-hint" class="login-hint">
+      🔒 Muốn lưu lịch sử chat?
+      <span onclick="openLogin()">Đăng nhập</span> hoặc
+      <span onclick="openRegister()">Đăng ký</span>
+    </div>
+
+    <div id="messages" class="messages">
+      <div class="bot">Xin chào 👋 Tôi có thể giúp bạn về CNTT.</div>
+    </div>
+
+    <div id="typing" class="typing hidden">🤖 Đang trả lời...</div>
+
+    <div class="input-area">
+      <input id="input" placeholder="Nhập câu hỏi về CNTT..." />
+      <button onclick="send()">➤</button>
+    </div>
+
+  </main>
+</div>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="auth-modal hidden">
+  <div class="auth-box">
+    <h3 id="auth-title">Đăng nhập</h3>
+
+    <input id="auth-username" placeholder="Tên đăng nhập">
+    <input id="auth-email" placeholder="Email" class="hidden">
+    <input id="auth-password" type="password" placeholder="Mật khẩu">
+
+    <button onclick="submitAuth()">Xác nhận</button>
+
+    <p class="auth-switch">
+      <span id="auth-switch-text" onclick="switchAuth()">
+        Chưa có tài khoản? Đăng ký
+      </span>
+    </p>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

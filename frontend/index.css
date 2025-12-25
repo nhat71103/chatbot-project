@@ -1,0 +1,665 @@
+/* ================= BASE LAYOUT ================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: radial-gradient(circle at top left, #1e293b 0, #020617 45%),
+              radial-gradient(circle at bottom right, #0ea5e9 0, #020617 40%);
+  color: #fff;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+  width: 300px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.sidebar-header {
+  padding: 18px 16px 10px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.sidebar-subtitle {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* MENU */
+.sidebar-menu {
+  padding: 6px 10px;
+}
+
+.menu-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.08);
+  opacity: 1;
+}
+
+/* ================= CHAT AREA ================= */
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.bot,
+.user {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.bot {
+  background: rgba(255,255,255,0.12);
+}
+
+.user {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  margin-left: auto;
+}
+
+/* INPUT */
+.input-area {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.input-area button {
+  margin-left: 8px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ================= CHAT HISTORY – FINAL FIX (STABLE + BEAUTY) ================= */
+
+.sidebar-history {
+  flex: 1;                 /* 🔥 QUAN TRỌNG */
+  min-height: 0;           /* 🔥 QUAN TRỌNG */
+  overflow-y: auto;
+
+  padding-bottom: 10px;
+}
+
+/* Title */
+.history-title-row {
+  margin-bottom: 8px;
+}
+
+.history-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+
+/* SEARCH + ADD (TRONG HISTORY – nếu còn dùng) */
+.history-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+/* SEARCH INPUT */
+.history-toolbar input {
+  flex: 1;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  color: #fff;
+  font-size: 13.5px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.history-toolbar input::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+.history-toolbar input:focus {
+  background: rgba(0,0,0,0.35);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.35);
+}
+
+/* ADD BUTTON */
+.add-chat-btn {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.25s ease;
+}
+
+.add-chat-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 18px rgba(139,92,246,0.45);
+}
+
+.add-chat-btn:active {
+  transform: scale(0.95);
+}
+
+/* LIST CHAT */
+#conversations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 4px 0;
+}
+
+/* ================= SEARCH BAR TRÊN MENU (ĐẸP HƠN) ================= */
+
+.sidebar-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 12px;
+  padding: 10px 12px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  transition: 0.25s ease;
+}
+
+.sidebar-search:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.05)
+  );
+}
+
+/* SEARCH INPUT (TRÊN MENU) */
+.sidebar-search input {
+  flex: 1;
+  height: 38px;
+  padding: 0 14px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+
+  font-size: 13.5px;
+  outline: none;
+
+  transition: 0.25s ease;
+}
+
+.sidebar-search input::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+.sidebar-search input:focus {
+  background: rgba(0,0,0,0.4);
+  box-shadow: inset 0 0 0 1.5px #8b5cf6;
+}
+
+/* Typing indicator */
+.typing {
+  padding: 8px 16px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== Login hint (guest only) ===== */
+.login-hint {
+  margin: 10px 16px;
+  padding: 10px 14px;
+
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 12px;
+
+  font-size: 13px;
+  color: #ddd;
+}
+
+.login-hint span {
+  color: #8b5cf6;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login-hint span:hover {
+  text-decoration: underline;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.auth-box {
+  width: 320px;
+  background: #020617;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.auth-box h3 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.auth-box input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.auth-switch span {
+  color: #8b5cf6;
+  cursor: pointer;
+}
+
+/* ================= AUTH MODAL (FINAL – CLEAN) ================= */
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Ẩn modal */
+.auth-modal.hidden {
+  display: none !important;
+}
+
+.auth-box {
+  width: 320px;
+  background: #020617;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+.auth-box h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #1f2937;
+  color: #fff;
+  font-size: 14px;
+}
+
+.auth-box input::placeholder {
+  color: #9ca3af;
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.auth-box button:hover {
+  opacity: 0.9;
+}
+
+.auth-switch {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.auth-switch span {
+  color: #60a5fa;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-switch span:hover {
+  text-decoration: underline;
+}
+
+/* ===== DÙNG CHUNG ===== */
+.hidden {
+  display: none !important;
+}
+
+/* ===== Chat header layout ===== */
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== Logout button ===== */
+
+.logout-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.85); /* đỏ đẹp */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.45);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Header layout ===== */
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===== Logout button (Facebook style) ===== */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 16px;      /* 👉 dài ra */
+  min-width: 110px;       /* 👉 đảm bảo chữ không xuống dòng */
+
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.1);
+  color: #e4e6eb;
+
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;    /* 🔥 KHÔNG xuống dòng */
+
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: #f02849; /* Facebook red */
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(240, 40, 73, 0.45);
+}
+
+.logout-btn:active {
+  transform: scale(0.96);
+}
+
+.logout-icon {
+  font-size: 15px;
+}
+
+.logout-icon {
+  font-size: 15px;
+}
+
+/* ===== Hidden helper ===== */
+.hidden {
+  display: none !important;
+}
+
+/* ===== Conversation item – FINAL FIX (KHÔNG MẤT KHUNG) ===== */
+
+.conversation-item {
+  width: calc(100% - 16px);   /* không full ngang */
+  margin: 0 auto 8px auto;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);   /* 🔥 KHUNG Ở ĐÂY */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.conversation-item:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.conversation-item.active {
+  background: rgba(59, 130, 246, 0.35);
+  border-color: #3b82f6;
+}
+
+/* title */
+.conversation-item b {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* meta */
+.conversation-item small {
+  display: block;
+  font-size: 11px;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+
+/* ===== Conversation row layout ===== */
+.conv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== Delete button ===== */
+.delete-conv-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  opacity: 0.55;
+
+  transition: all 0.2s ease;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.delete-conv-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ===== PIN STAR (Ghim hội thoại) ===== */
+
+.pin-star {
+  font-size: 15px;
+  cursor: pointer;
+  opacity: 0.35;
+  margin-right: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.pin-star:hover {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+.pin-star.pinned {
+  color: gold;
+  opacity: 1;
+}
+
+/* đặt sao + nội dung cùng hàng */
+.conv-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

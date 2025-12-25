@@ -1,0 +1,730 @@
+/* ================= LOGIN ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  margin: 0;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box h2 {
+  margin: 0 0 24px 0;
+  color: #1e293b;
+  font-size: 24px;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.login-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.login-box button:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: center;
+  min-height: 20px;
+}
+
+/* ================= ADMIN CONTAINER ================= */
+.admin-container {
+  display: none;
+  min-height: 100vh;
+  background: #f1f5f9;
+  padding: 0;
+}
+
+.admin-header {
+  background: white;
+  padding: 20px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.status-message {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* ================= TABS ================= */
+.admin-tabs {
+  background: white;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0 32px;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  padding: 14px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: #334155;
+  background: #f8fafc;
+}
+
+.tab-btn.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.tab-content {
+  display: none;
+  padding: 32px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ================= KNOWLEDGE LAYOUT ================= */
+.admin-layout {
+  display: flex;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.knowledge-sidebar {
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  max-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-add {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.knowledge-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.knowledge-item {
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.knowledge-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.knowledge-item.active {
+  background: #eef2ff;
+  border-color: #667eea;
+}
+
+.knowledge-item-title {
+  flex: 1;
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.knowledge-item-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.knowledge-item-delete:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.knowledge-editor {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 300px;
+  line-height: 1.6;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  padding: 12px 24px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+/* ================= USERS MANAGEMENT ================= */
+.users-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.users-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-item {
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.user-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.user-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.user-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.badge-admin {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete, .btn-password {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #2563eb;
+}
+
+.btn-password {
+  background: #8b5cf6;
+  color: white;
+}
+
+.btn-password:hover {
+  background: #7c3aed;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.modal-body {
+  margin-bottom: 24px;
+}
+
+.modal-body .form-group {
+  margin-bottom: 16px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.empty-state p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* ================= ENHANCED BUTTONS ================= */
+
+.btn-edit,
+.btn-password,
+.btn-delete {
+  min-width: 80px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px; /* pill */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-edit::before {
+  content: "✏️";
+}
+.btn-password::before {
+  content: "🔑";
+}
+.btn-delete::before {
+  content: "🗑️";
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.btn-password {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-edit:hover,
+.btn-password:hover,
+.btn-delete:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+
+/* ================= USERS LIST – CARD STYLE ================= */
+
+.users-list {
+  gap: 16px;
+}
+
+.user-item {
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 14px rgba(0,0,0,.05);
+}
+
+.user-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.1);
+}
+
+/* ================= USER INFO ================= */
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #475569;
+}
+
+/* ================= BADGES ================= */
+
+.user-badge {
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+.badge-admin {
+  background: linear-gradient(135deg, #fde68a, #facc15);
+  color: #713f12;
+}
+
+.badge-active {
+  background: linear-gradient(135deg, #bbf7d0, #22c55e);
+  color: #064e3b;
+}
+
+.badge-inactive {
+  background: linear-gradient(135deg, #fecaca, #ef4444);
+  color: #7f1d1d;
+}
+
+/* ================= ACTION BAR ================= */
+
+.user-actions {
+  gap: 10px;
+}
+
+/* ADMIN SYSTEM TEXT */
+.user-actions i {
+  font-size: 13px;
+  color: #64748b;
+  font-style: normal;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* ================= TAB HEADER LOOK ================= */
+
+.admin-tabs {
+  box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
+.tab-btn.active {
+  background: linear-gradient(180deg, #eef2ff, #ffffff);
+  border-radius: 12px 12px 0 0;
+}
+
+/* ================= KNOWLEDGE ITEM POLISH ================= */
+
+.knowledge-item {
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.knowledge-item:hover {
+  transform: translateX(2px);
+}
+
+.knowledge-item.active {
+  background: linear-gradient(135deg, #eef2ff, #ffffff);
+}
+
+/* ================= SCROLLBAR NICE ================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5b4fc;
+}
+
+#loginBox {
+  display: flex;
+}
+
+#adminBox {
+  display: none;
+}

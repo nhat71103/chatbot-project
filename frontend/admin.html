@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/static/admin.css" />
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-container" id="loginBox">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <input id="username" placeholder="Username" autocomplete="username">
+    <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+    <button onclick="login()">Đăng nhập</button>
+    <p id="loginError" class="error-message"></p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-container" id="adminBox">
+  <header class="admin-header">
+    <div class="header-left">
+      <h1>Bảng điều khiển kiến thức Chatbot</h1>
+      <span id="statusMessage" class="status-message"></span>
+    </div>
+    <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+  </header>
+
+  <div class="admin-tabs">
+    <button class="tab-btn active" onclick="switchTab('knowledge')" id="tab-knowledge">
+      📚 Quản lý Kiến thức
+    </button>
+    <button class="tab-btn" onclick="switchTab('users')" id="tab-users">
+      👥 Quản lý Tài khoản
+    </button>
+  </div>
+
+  <!-- TAB: KNOWLEDGE -->
+  <div class="tab-content active" id="content-knowledge">
+    <div class="admin-layout">
+      <aside class="knowledge-sidebar">
+        <button class="btn-add" onclick="AdminUI.newItem()">
+          + Thêm kiến thức mới
+        </button>
+        <div id="knowledge-list" class="knowledge-list"></div>
+      </aside>
+
+      <main class="knowledge-editor">
+        <div class="form-group">
+          <label for="k-title">Tiêu đề (chủ đề):</label>
+          <input type="text" id="k-title" placeholder="Nhập tiêu đề kiến thức">
+        </div>
+        
+        <div class="form-group">
+          <label for="k-content">Nội dung (chia đoạn bằng một dòng trống):</label>
+          <textarea id="k-content" rows="15" placeholder="Nhập nội dung kiến thức..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="AdminUI.newItem()">Làm mới form</button>
+          <button class="btn-primary" onclick="AdminUI.save()">Lưu</button>
+        </div>
+        <input type="hidden" id="k-id">
+      </main>
+    </div>
+  </div>
+
+  <!-- TAB: USERS -->
+  <div class="tab-content" id="content-users">
+    <div class="users-container">
+      <div class="users-header">
+        <h2>Danh sách tài khoản</h2>
+        <div id="users-status" class="status-message"></div>
+      </div>
+      <div id="users-list" class="users-list"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/admin.js"></script>
+</body>
+</html>

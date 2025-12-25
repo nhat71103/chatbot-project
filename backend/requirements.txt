@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pyodbc
+requests
+beautifulsoup4
+pyjwt
+email-validator
+python-multipart
+passlib[bcrypt]
+bcrypt
