@@ -54,40 +54,32 @@ Sao chép mã
 ```bash
 git clone https://github.com/nhat71103/chatbot-project.git
 cd Web-ChatBot
+
 2️⃣ Tạo & kích hoạt môi trường ảo (khuyến nghị)
-bash
-Sao chép mã
+
 python -m venv venv
 venv\Scripts\activate
+
 3️⃣ Cài thư viện backend
 Nếu có requirements.txt:
 
-bash
-Sao chép mã
 pip install -r requirements.txt
 Nếu chưa có:
 
-bash
-Sao chép mã
 pip install fastapi uvicorn sqlalchemy passlib[bcrypt] python-jose python-multipart
+
 4️⃣ Chạy backend
-bash
-Sao chép mã
+
 cd backend
 uvicorn main:app --reload
-Khi thấy:
 
-nginx
-Sao chép mã
+Khi thấy:
 Uvicorn running on http://127.0.0.1:8000
 → Backend chạy thành công ✅
 
 🌐 Đường dẫn sử dụng
 🏠 Trang chủ (User Chat)
-cpp
-Sao chép mã
 http://127.0.0.1:8000/
+
 🔐 Trang Admin
-arduino
-Sao chép mã
 http://127.0.0.1:8000/admin-page
