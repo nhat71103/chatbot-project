@@ -153,7 +153,7 @@ const AdminUI = {
     data.forEach(k => {
       const div = document.createElement("div");
       div.className = "knowledge-item";
-      div.innerText = `#${k.id} • ${k.title}`;
+      div.innerText = k.title;
       div.onclick = () => this.select(k);
       list.appendChild(div);
     });
@@ -164,19 +164,33 @@ const AdminUI = {
     document.getElementById("k-id").value = k.id;
     document.getElementById("k-title").value = k.title;
     document.getElementById("k-content").value = k.content;
+    document.getElementById("k-keywords").value = k.keywords || "";
+
+    // ✅ HIỆN NÚT XÓA
+    document.getElementById("btn-delete-knowledge").style.display = "inline-block";
   },
+
+
 
   newItem() {
     this.selectedId = null;
     document.getElementById("k-id").value = "";
     document.getElementById("k-title").value = "";
     document.getElementById("k-content").value = "";
+    document.getElementById("k-keywords").value = "";
+
+    // ✅ ẨN NÚT XÓA
+    document.getElementById("btn-delete-knowledge").style.display = "none";
   },
+
+
 
   async save() {
     const id = document.getElementById("k-id").value;
     const title = document.getElementById("k-title").value.trim();
     const content = document.getElementById("k-content").value.trim();
+    const keywords = document.getElementById("k-keywords").value.trim();
+
 
     if (!title || !content) {
       alert("Nhập đầy đủ nội dung");
@@ -191,7 +205,7 @@ const AdminUI = {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getToken()}`
         },
-        body: JSON.stringify({ title, content })
+        body: JSON.stringify({ title, content, keywords })
       }
     );
 
@@ -199,7 +213,34 @@ const AdminUI = {
 
     this.newItem();
     this.loadList();
+  },
+
+  async remove() {
+    if (!this.selectedId) return;
+
+    if (!confirm("Bạn có chắc chắn muốn xóa kiến thức này?")) return;
+
+    const res = await fetch(
+      `${API}/admin/knowledge/${this.selectedId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${getToken()}`
+        }
+      }
+    );
+
+    if (!res.ok) {
+      alert("Xóa thất bại");
+      return;
+    }
+
+    alert("Đã xóa kiến thức");
+    this.newItem();
+    this.loadList();
   }
+
+
 };
 
 /* ================= USERS ================= */

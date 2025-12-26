@@ -331,10 +331,12 @@ def delete_user(uid: int, authorization: str | None = Header(default=None)):
 class KnowledgeCreate(BaseModel):
     title: str
     content: str
+    keywords: str | None = None
 
 class KnowledgeUpdate(BaseModel):
     title: str | None = None
     content: str | None = None
+    keywords: str | None = None
 
 @app.get("/admin/knowledge")
 def get_knowledge(authorization: str | None = Header(default=None)):
@@ -345,10 +347,12 @@ def get_knowledge(authorization: str | None = Header(default=None)):
             {
                 "id": item.id,
                 "title": item.title,
-                "content": item.content
+                "content": item.content,
+                "keywords": item.keywords
             }
             for item in items
         ]
+
 
 @app.post("/admin/knowledge")
 def create_knowledge(payload: KnowledgeCreate, authorization: str | None = Header(default=None)):
@@ -356,7 +360,8 @@ def create_knowledge(payload: KnowledgeCreate, authorization: str | None = Heade
     with get_session() as db:
         item = Knowledge(
             title=payload.title,
-            content=payload.content
+            content=payload.content,
+            keywords=payload.keywords
         )
         db.add(item)
         db.commit()
@@ -377,16 +382,18 @@ def update_knowledge(kid: int, payload: KnowledgeUpdate, authorization: str | No
         
         if payload.title is not None:
             item.title = payload.title
-        if payload.content is not None:
-            item.content = payload.content
+        if payload.keywords is not None:
+            item.keywords = payload.keywords
         
         db.commit()
         db.refresh(item)
         return {
             "id": item.id,
             "title": item.title,
-            "content": item.content
+            "content": item.content,
+            "keywords": item.keywords
         }
+
 
 @app.delete("/admin/knowledge/{kid}")
 def delete_knowledge(kid: int, authorization: str | None = Header(default=None)):

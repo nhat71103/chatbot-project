@@ -10,7 +10,7 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .login-container {
@@ -357,6 +357,30 @@ html, body {
   background: #e2e8f0;
   border-color: #cbd5e1;
 }
+
+/* ================= DELETE BUTTON ================= */
+
+.btn-danger {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.45);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+}
+
 
 /* ================= USERS MANAGEMENT ================= */
 .users-container {

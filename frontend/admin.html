@@ -59,10 +59,34 @@
           <textarea id="k-content" rows="15" placeholder="Nhập nội dung kiến thức..."></textarea>
         </div>
 
+        <div class="form-group">
+          <label for="k-keywords">
+            Keywords (từ khóa, cách nhau bằng dấu phẩy):
+          </label>
+          <input
+            type="text"
+            id="k-keywords"
+            placeholder="vd: năm 1, học gì, công nghệ thông tin, sinh viên"
+          >
+        </div>
+
+
         <div class="form-actions">
           <button class="btn-secondary" onclick="AdminUI.newItem()">Làm mới form</button>
+
+          <button
+            id="btn-delete-knowledge"
+            class="btn-danger"
+            onclick="AdminUI.remove()"
+            style="display: none;"
+          >
+            Xóa kiến thức
+          </button>
+
           <button class="btn-primary" onclick="AdminUI.save()">Lưu</button>
         </div>
+
+
         <input type="hidden" id="k-id">
       </main>
     </div>

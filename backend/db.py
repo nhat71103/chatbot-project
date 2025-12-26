@@ -43,6 +43,11 @@ class Knowledge(Base):
     title = Column(Unicode(255))
     content = Column(UnicodeText(), nullable=False)
 
+    # ⭐ thêm keywords để bot hiểu "ý"
+    keywords = Column(UnicodeText())
+
+    # ⭐⭐ THÊM DÒNG NÀY
+    intent = Column(Unicode(50))
 
 class ChatHistory(Base):
     __tablename__ = "chat_history"
